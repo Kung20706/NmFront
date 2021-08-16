@@ -3,6 +3,7 @@ import Login from './Components/Login.vue';
 import Header from './Components/Header.vue';
 import Home from './Components/Home.vue';
 import Reset from './Components/Reset.vue';
+import Resets from './Components/ResetPassword.vue';
 import Create from './Components/Create.vue';
 export const routes = [
     {
@@ -18,6 +19,13 @@ export const routes = [
       path: '/resetpassword',
       components: {
         default: Reset,
+        nav: Header
+      }
+    },
+    {
+      path: '/resetpassword2',
+      components: {
+        default: Resets,
         nav: Header
       }
     },

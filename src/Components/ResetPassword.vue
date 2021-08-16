@@ -6,12 +6,12 @@
   <div id="container1">
     <form @submit.prevent="login">
   
-    <h2>請輸入您的信箱</h2>
-      <input type="text" placeholder="帳號"  v-model="userName" required>
+    <h2>請輸入新密碼</h2>
+      <input type="text" placeholder="密碼"  v-model="userName" required>
       <br>
       <div style="height: 30px;"></div>
       <br>
-      <a href="/home"><button class="submit" type="submit">發送確認信</button></a>
+      <a href="/home"><button class="submit" type="submit">確認</button></a>
       
       <a href="/create"><h3>註冊新帳號</h3> </a>
       
@@ -43,7 +43,7 @@ import axios from 'axios';
         var vm = this
         console.log(newTodo)
         
-        axios.post('http://18.183.17.66:9487/Account/Internal/Login', newTodo)
+        axios.get('http://18.183.17.66:9487/Account/MailReset',  { params: username })
           .then((response) => {
           if( 
             response.data.ErrorCode === '200')
