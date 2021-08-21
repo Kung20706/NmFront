@@ -43,7 +43,7 @@ import axios from 'axios';
         password: this.password
        }
        var local = 'http://127.0.0.1:'
-       var aws = 'http://18.183.17.66:'
+       var aws = 'http://52.68.137.41:'
        console.log(local,aws)
        const token = window.sessionStorage.getItem('token')
         var myObj = {};

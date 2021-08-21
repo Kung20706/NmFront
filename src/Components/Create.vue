@@ -43,10 +43,11 @@ import axios from 'axios';
         password: this.password,
         auth:'1'
        }
-       
+        const local = 'http://127.0.0.1:'
+       const aws = 'http://52.68.137.41:'
         var vm = this
         console.log(newTodo)
-        axios.post('http://18.183.17.66:9487/Account/Create', newTodo)
+        axios.post(aws+'9487/Account/Create', newTodo)
           .then((response) => {
           if( 
             response.data.ErrorCode === '200')

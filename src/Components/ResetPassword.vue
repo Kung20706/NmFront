@@ -5,10 +5,12 @@
    <center>
   <div id="container1">
     <form @submit.prevent="login">
-  
+   
     <h2>請輸入新密碼</h2>
+     <h3>{{this.$route.params.id}}</h3>
       <input type="text" placeholder="密碼"  v-model="userName" required>
       <br>
+     
       <div style="height: 30px;"></div>
       <br>
       <a href="/home"><button class="submit" type="submit">確認</button></a>
@@ -29,28 +31,34 @@ import axios from 'axios';
   export default {
     data () {
       return {
-        userName: ''
+        userName: '',
+        Token:'',
+        mail:'',
       }
     },
     methods: {
       login(){
         const newTodo = {
-        username: this.userName
+        username: this.userName,
+        Token: '',
+        mail: '',
        }
-       
-       const token = window.sessionStorage.getItem('token')
+        var local = 'http://127.0.0.1:'
+       var aws = 'http://52.68.137.41:'
+       newTodo.token = window.sessionStorage.getItem('token')
+       newTodo.mail = this.$route.params.id
         var myObj = {};
         var vm = this
         console.log(newTodo)
         
-        axios.get('http://18.183.17.66:9487/Account/MailReset',  { params: username })
+        axios.post(aws+'9487/Account/ResetPassWord',newTodo)
           .then((response) => {
           if( 
             response.data.ErrorCode === '200')
             
-            {alert('登入成功')
+            {alert('密碼重製成功')
             window.sessionStorage.setItem('token',response.data.Data.Token),
-            this.$router.push({ path: 'home' });
+            this.$router.push({ path: '' });
             }
           else{alert('login failed')}
          

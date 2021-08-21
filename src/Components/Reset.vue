@@ -4,14 +4,15 @@
 <template>
    <center>
   <div id="container1">
-    <form @submit.prevent="login">
+    <form @submit.prevent="reset">
   
     <h2>請輸入您的信箱</h2>
       <input type="text" placeholder="帳號"  v-model="userName" required>
       <br>
       <div style="height: 30px;"></div>
       <br>
-      <a href="/home"><button class="submit" type="submit">發送確認信</button></a>
+       <a href="/login"><button class="submit" type="submit">發送確認信</button></a>
+      
       
       <a href="/create"><h3>註冊新帳號</h3> </a>
       
@@ -33,24 +34,25 @@ import axios from 'axios';
       }
     },
     methods: {
-      login(){
+      reset(username){
         const newTodo = {
         username: this.userName
        }
-       
+        var local = 'http://127.0.0.1:'
+       var aws = 'http://52.68.137.41:'
        const token = window.sessionStorage.getItem('token')
         var myObj = {};
         var vm = this
         console.log(newTodo)
         
-        axios.post('http://18.183.17.66:9487/Account/Internal/Login', newTodo)
+        axios.get(aws+'9487/Account/MailReset/'+this.userName)
           .then((response) => {
           if( 
             response.data.ErrorCode === '200')
             
-            {alert('登入成功')
+            {alert('已發送驗證信,請至信箱確認')
             window.sessionStorage.setItem('token',response.data.Data.Token),
-            this.$router.push({ path: 'home' });
+            this.$router.push({ path: 'login' });
             }
           else{alert('login failed')}
          

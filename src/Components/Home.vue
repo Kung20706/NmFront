@@ -163,7 +163,7 @@ export default {
        }
         let self = this
         const local = 'http://127.0.0.1:'
-       const aws = 'http://18.183.17.66:'
+       const aws = 'http://52.68.137.41:'
        console.log(local,aws)
         this.userList = []
         this.open= false

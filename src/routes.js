@@ -23,7 +23,7 @@ export const routes = [
       }
     },
     {
-      path: '/resetpassword2',
+      path: '/resetpassword2/:id',
       components: {
         default: Resets,
         nav: Header
